@@ -1,6 +1,48 @@
+class Cliente{
+    private String nombre;
+    private String apellido;
+    private String cedula;
+
+    public Cliente(String nombre, String apellido, String cedula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String toString(){
+        return String.format("Nombre: %s"+
+                "Apellido: %s"+
+                "Cedula: %s",this.getNombre(),this.getApellido(),this.getCedula());
+    }
+}
 class Banco{
     private String nombreBanco;
     private int numeroSucursales;
+
 
     public Banco(String nombreBanco, int numeroSucursales) {
         this.nombreBanco = nombreBanco;
@@ -34,8 +76,8 @@ class Cheque {
     private double valorCheque;
     private Banco banco;
     private double comisionBanco;
-
-    public Cheque(String nombreCliente, double valorCheque, Banco banco) {
+    private Cliente cliente;
+    public Cheque(Cliente cliente, double valorCheque, Banco banco) {
         this.nombreCliente = nombreCliente;
         this.valorCheque = valorCheque;
         this.banco = banco;
@@ -73,6 +115,12 @@ class Cheque {
         return comisionBanco;
     }
 
+    public void setCliente(){
+        this.cliente=cliente;
+    }
+    public Cliente getCliente(){
+        return this.cliente;
+    }
     public String toString() {
         return String.format("DATOS"+
                 "\nNombre Banco: %s"+
@@ -84,8 +132,9 @@ class Cheque {
 }
 public class TestEntidadFinanciera {
     public static void main(String[] args) {
+        Cliente cliente= new Cliente("Iam","Estrella","1104599376");
         Banco banco= new Banco("BanLoja",4);
-        Cheque cheque=new Cheque("Iam",12000,banco);
+        Cheque cheque=new Cheque("Cliente",12000,banco);
         cheque.calcularComisionBanco();
         System.out.print(cheque);
     }
